@@ -48,6 +48,7 @@ def get_weather(city, temp_mode='fahrenheit'):
 
 
 if __name__ == '__main__':
+    # Test code
     city = 'Charlottesville'
     temp_mode = input('Type "celsius" or "fahrenheit": ')
     print(get_weather(city, temp_mode.lower()))
