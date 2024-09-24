@@ -1,0 +1,5 @@
+__pycache__/
+.venv/
+
+# Contains Discord Bot Token and Weather API Key
+config.py
