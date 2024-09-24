@@ -5,12 +5,12 @@ from weather import get_weather
 from config import TOKEN
 
 
-# BOT SETUP
+# Bot Setup
 intents: Intents = Intents.default()
 intents.message_content = True
 client: Client = Client(intents=intents)
 
-# Message Function
+# Message Function - Custom Code
 async def send_message(message: Message,user_message: str) -> None:
     # ---------------------------------------------------------------------
     # WRITE NEW RESPONSES HERE !!
