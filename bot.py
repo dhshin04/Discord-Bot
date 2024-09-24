@@ -27,6 +27,9 @@ async def send_message(message: Message,user_message: str) -> None:
         await message.channel.send(f'Rolling a die... {random.randint(1, 6)}.')
         return
     if 'weather' in msg_lower and ('today' in msg_lower or 'current' in msg_lower or 'now' in msg_lower):
+        if 'celsius' in msg_lower:
+            await message.channel.send(get_weather(city, temp_mode='celsius'))
+            return
         await message.channel.send(get_weather(city))
         return
 
