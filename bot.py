@@ -22,6 +22,7 @@ async def send_message(message: Message,user_message: str) -> None:
     if msg_lower.startswith('/llm'):
         msg = ask_llm(msg_lower.replace('/llm', ''))
         await message.channel.send(msg[:2000])
+        return
     
     city = 'Charlottesville'
 
