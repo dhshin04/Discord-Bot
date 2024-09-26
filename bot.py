@@ -28,30 +28,32 @@ async def send_message(message: Message,user_message: str) -> None:
 
     # Interact with pre-defined commands
     prompt = f'''Given a prompt, choose a command that best aligns 
-    with what user asks: 
-        "hi" if user says something like hi or hello, 
-        "introduce" if user wants an introduction from you, 
-        "roll a die/random" if user wants to roll a die or wants a random number, 
-        "today's weather" if user wants today's weather,
-        "celsius" if user wants today's weather in celsius.
-        "Hmm... I'm not sure if I understand" if no words match.
-    Return just ONE word/phrase to me: e.g., "hi" or "today's weather" but without anything else. 
-    Words that appear later in the command list I provided have higher priority.
+    with what the user asks: 
+        1. "today's weather in celsius" if user wants today's weather in celsius
+        2. "today's weather" if user wants today's weather
+        3. "roll a die/random" if user wants to roll a die or wants a random number
+        4. "introduce" if user wants an introduction from you
+        5. "hi" if user says something like hi or hello
+        6. "uncertain" if no words match.
+    Word/phrase that appear earlier in the list has higher priority. For instance, 
+    "today's weather in celsius" is item 1 so you should choose this over "hi", which is item 5.
+    Return just the chosen command without any extra words.
 
     User asks "{user_message}".
     '''
 
     response = ask_llm(prompt)
+    print(response)
     bot_response = ''
 
     if 'hi' in response:
-        bot_response += 'Hello! '
+        bot_response += 'Hello!'
         #return
     if 'introduce' in response:
-        bot_response += f'My name is {client.user}. '
+        bot_response += f'My name is {client.user}.'
         #return
     if 'roll a die/random' in response:
-        bot_response += f'Rolling a die... {random.randint(1, 6)}. '
+        bot_response += f'Rolling a die... {random.randint(1, 6)}.'
         #return
     if 'today\'s weather' in response:
         if 'celsius' in response:
@@ -59,6 +61,8 @@ async def send_message(message: Message,user_message: str) -> None:
             #return
         else:
             bot_response += f'This is today\'s weather in {get_weather(city)}'
+    if 'uncertain' in response:
+        bot_response += 'Hmm... I\'m not sure if I understand.'
     
     await message.channel.send(bot_response)
     return
