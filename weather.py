@@ -1,5 +1,5 @@
 import requests
-from config import API_KEY
+from config import WEATHER_API_KEY
 
 BASE_URL = 'http://api.weatherapi.com/v1'
 
@@ -10,7 +10,7 @@ def get_weather(city, temp_mode='fahrenheit'):
     
     api_method = '/forecast.json'    # get current weather
     res = requests.get(
-        BASE_URL + api_method + '?key=' + API_KEY + '&q=' + city
+        BASE_URL + api_method + '?key=' + WEATHER_API_KEY + '&q=' + city
     )
 
     if res.status_code == 404:
