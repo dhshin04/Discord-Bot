@@ -37,7 +37,7 @@ async def send_message(message: Message,user_message: str) -> None:
         6. "uncertain" if no words match.
     Word/phrase that appear earlier in the list has higher priority. For instance, 
     "today's weather in celsius" is item 1 so you should choose this over "hi", which is item 5.
-    Return just the chosen command without any extra words.
+    Return just the chosen command without any extra words in your response.
 
     User asks "{user_message}".
     '''
