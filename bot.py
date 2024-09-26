@@ -41,9 +41,7 @@ async def send_message(message: Message,user_message: str) -> None:
     User asks "{user_message}".
     '''
 
-    print(prompt)
     response = ask_llm(prompt)
-    print(response)
     bot_response = ''
 
     if 'hi' in response:
