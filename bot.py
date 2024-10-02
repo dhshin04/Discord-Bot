@@ -37,7 +37,8 @@ async def send_message(message: Message,user_message: str) -> None:
         6. "uncertain" if no words match.
     Word/phrase that appear earlier in the list has higher priority. For instance, 
     "today's weather in celsius" is item 1 so you should choose this over "hi", which is item 5.
-    Return just the chosen command without any extra words in your response.
+    Return just the chosen command without any extra words in your response but you must 
+    choose one of these commands.
 
     User asks "{user_message}".
     '''
@@ -61,7 +62,7 @@ async def send_message(message: Message,user_message: str) -> None:
             #return
         else:
             bot_response += f'This is today\'s weather in {get_weather(city)}'
-    if 'uncertain' in response:
+    if bot_response == '':
         bot_response += 'Hmm... I\'m not sure if I understand.'
     
     await message.channel.send(bot_response)
